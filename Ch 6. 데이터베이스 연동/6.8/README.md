@@ -94,5 +94,5 @@ public interface JpaRepository<T, ID> extends PagingAndSortingRepository<T, ID>,
 **OrderBy**
 - SQL문에서 order by와 동일한 기능을 수행
 
-**countBy**
+**CountBy**
 - SQL문의 count와 동일한 기능 수행하며, 결괏값의 개수 추출
