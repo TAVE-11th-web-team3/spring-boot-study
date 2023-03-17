@@ -1,0 +1,12 @@
+![header](https://capsule-render.vercel.app/api?type=wave&color=C3E5AE&height=200&section=header&text=Spring&nbsp;Boot&nbsp;Study&fontSize=50&fontColor=000000)
+
+## 6.1 마리아 DB 설치
+*************************************
+-  마리아 DB 사이트에 접속 후, 설치파일 다운로드 
+-  root 계정 설정 및 UTF-8 을 기본값으로 설정
+-  포트 번호 설정 : 기본 포트 번호는 &nbsp; **3306**
+-  설치 완료 후에는, 데이터 베이스를 생성해준다.
+ 
+```MySQL
+CREATE DATABASE springboot;
+```
