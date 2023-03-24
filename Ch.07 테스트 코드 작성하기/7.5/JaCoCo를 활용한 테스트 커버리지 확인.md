@@ -96,3 +96,84 @@
   
   #### 2. executions 설정
   
+  ```
+          <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <!-- 예제 7.23 -->
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                    </limits>
+                                    <element>METHOD</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>TOTALCOUNT</value>
+                                            <maximum>50</maximum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+  
+  ```
+
+  * <execution> 은 기본적으로 <goal> 을 포함하며, 설정한 값에 따라 추가 설정이 필요한 내용을 <configuration> 과 <rule>을 통해 작성
+  > **goal의 속성 값**
+  
+  * help: jacoco-maven-plugin에 대한 도움말을 보여줌.
+  * prepare-agent: 테스트 중인 애플리케이션에 VM 인수를 전달하는 JaCoCo 런타임 에이전트의 속성을 준비, 에이전트는 maven-surefire-plugin 을 통해 테스트한 결과를 가져오는 역할 수행
+  * prepare-agent-integration: prepare-agent와 유사하지만 통합 테스트에 적합한 기본값을 제공
+  * merge: 실행 데이터 파일 세트(.exec)를 단일 파일로 병합
+  * report: 단일 프로젝트 테스트를 마치면 생성되는 코드 검사 보고서를 다양한 형식(HTML, XML, CSV) 중에서 선택할 수 있게 함
+  * report-integration: report 와 유사하나 통합 테스트에 적합한 기본값을 제공
+  * report-aggregate: Reactor 내의 여러 프로젝트에서 구조화된 보고서(HTML, XML, CSV)를 생성. 보고서는 해당 프로젝트가 의존하는 모듈에서 생성됨.
+  * check: 코드 커버리지의 매트릭 충족 여부를 검사함. **메트릭은 테스트 커버리지를 측정하는데 필요한 지표를 의미.** 메트릭은 check 가 설정된 <execution> 태그 내에서 <rule>을 통해 설정
+  * dump: TCP 서버 모드에서 실행 중인 JaCoCo 에이전트에서 TCP/IP 를 통한 덤프를 생성
+  * instrument: **오프라인 측정을 수행하는 명령** 테스트를 실행한 후 restore-instrumented-classes Goal로 원본 클래스 파일들을 저장해야 함.
+  * restore-instrumented-class: 오프라인 측정 전 원본 파일을 저장하는 기능을 수행
+  
+  #### 3. Rule
+  - JaCoCo 에서 설정할 수 있는 Rule. **configuration 태그 안에 설정** 하며, 다양한 속성을 활용할 수 있음.
+  1. Element : 코드 커버리지를 체크하는 데 필요한 범위 기준을 설정
+  * BUNDLE(기본값): 패키지 번들(프로젝트 내 모든 파일)
+  * PACKAGE: 패키지
+  * CLASS : 클래스
+  * GROUP : 논리적 번들 그룹
+  * SOURCEFILE: 소스 파일
+  * METHOD: 메서드  
+  
+  
+  :bulb: 값을 지정하지 않는 상태의 **기본값은 BUNDLE** , BUNDLE 은 Element를 기준으로 ```<limits>``` 태그 내 ```<counter>``` 와 ```<value>``` 를 활용해 커버리지 측정 단위와 방식을 설정  
+  
+  2. Counter: **커버리지를 측정하는 데 사용하는 지표**  
+  
+  :mag_right: 커버리지 측정 단위  
+  * LINE: 빈줄을 제외한 실제 코드의 라인 수
+  * BRANCH: 조건문 등의 분기 수
+  * CLASS: 
