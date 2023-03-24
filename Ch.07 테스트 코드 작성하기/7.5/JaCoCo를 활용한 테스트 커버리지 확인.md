@@ -115,29 +115,6 @@
                         <goals>
                             <goal>check</goal>
                         </goals>
-                        <!-- 예제 7.23 -->
-                        <configuration>
-                            <rules>
-                                <rule>
-                                    <element>BUNDLE</element>
-                                    <limits>
-                                        <limit>
-                                            <counter>INSTRUCTION</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>0.80</minimum>
-                                        </limit>
-                                    </limits>
-                                    <element>METHOD</element>
-                                    <limits>
-                                        <limit>
-                                            <counter>LINE</counter>
-                                            <value>TOTALCOUNT</value>
-                                            <maximum>50</maximum>
-                                        </limit>
-                                    </limits>
-                                </rule>
-                            </rules>
-                        </configuration>
                     </execution>
                 </executions>
   
@@ -160,7 +137,7 @@
   
   #### 3. Rule
   - JaCoCo 에서 설정할 수 있는 Rule. **configuration 태그 안에 설정** 하며, 다양한 속성을 활용할 수 있음.
-  1. Element : 코드 커버리지를 체크하는 데 필요한 범위 기준을 설정
+  :mag: Element : 코드 커버리지를 체크하는 데 필요한 범위 기준을 설정
   * BUNDLE(기본값): 패키지 번들(프로젝트 내 모든 파일)
   * PACKAGE: 패키지
   * CLASS : 클래스
@@ -171,9 +148,52 @@
   
   :bulb: 값을 지정하지 않는 상태의 **기본값은 BUNDLE** , BUNDLE 은 Element를 기준으로 ```<limits>``` 태그 내 ```<counter>``` 와 ```<value>``` 를 활용해 커버리지 측정 단위와 방식을 설정  
   
-  2. Counter: **커버리지를 측정하는 데 사용하는 지표**  
+  :mag: Counter: **커버리지를 측정하는 데 사용하는 지표**  
   
-  :mag_right: 커버리지 측정 단위  
+ :pushpin: 커버리지 측정 단위  
   * LINE: 빈줄을 제외한 실제 코드의 라인 수
   * BRANCH: 조건문 등의 분기 수
-  * CLASS: 
+  * CLASS: 클래스 수
+  * METHOD: 메서드 수
+  * INSTRUCTION(기본값): 자바의 바이트코드 명령 수
+  * COMPLECITY: 복잡도. 복잡도는 맥케이브 순환 복잡도 정의를 따름  
+  
+ :mag: Value: **커버리지 지표 설정**, 측정한 커버리지를 어떤 방식으로 보여주는지 설정
+  * TOTALCOUNT: 전체 개수
+  * MISSEDCOUNT: 커버되지 않는 개수
+  * COVEREDCOUNT: 커버된 개수
+  * MISSEDRATIO: 커버되지 않은 비율
+  * COVEREDRATIO(기본값) : 커버된 비율  
+  
+   :bulb: value의 속성을 지정하지 않는 경우의 **기본값은 COVERDRATIO**
+  
+  ```
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                    </limits>
+                                  <!-- 전체 라인 수를 최대 50줄로 설정 --!>
+                                    <element>METHOD</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>TOTALCOUNT</value>
+                                            <maximum>50</maximum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+  ```
+  * counter : INSTRUCTION, 패키지 번들 단위로 바이트코드 명령 수를 기준
+  * value : COVERDRATIO , 커버리지가 최소한 80% 달성하는 것을 limit 으로 설정
+##
+### 7.5.2 JaCoCo 테스트 커버리지 확인
+
