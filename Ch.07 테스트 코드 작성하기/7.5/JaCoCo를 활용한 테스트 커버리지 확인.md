@@ -196,4 +196,20 @@
   * value : COVERDRATIO , 커버리지가 최소한 80% 달성하는 것을 limit 으로 설정
 ##
 ### 7.5.2 JaCoCo 테스트 커버리지 확인
+![image](https://user-images.githubusercontent.com/78422940/227562268-eb500ae4-b9e1-4a8c-82e0-ac78d3a658ca.png)
 
+#### :sparkler: 리포트 페이지 구성 칼럼
+1. **Element**: 우측 테스트 커버리지를 측정한 단위를 표현. 링크를 따라 들어가면 세부 사항을 볼 수 있음.
+2. **Missed Instructions - Cov.(Coverage)**: 테스트를 수행한 후 바이트코드의 커버리지를 퍼센티지 바 형식으로 제공
+3. **Missed Branches - Cov.(Coverage)**: 분기에 대한 테스트 커버리지를 퍼센티지와 바 형식으로 제공
+4. **Missed - Cxty(Complexity)**: 복잡도에 대한 커버리지 대상 개수와 커버되지 않는 수를 제공
+5. **Missed - Lines**: 테스트 대상 라인 수와 커버되지 않는 라인수를 제공
+6. **Missed- Methods**: 테스트 대상 메서드 수와 커버되지 않는 메서드 수를 제공
+7. **Missed - Classes**: 테스트 대상 클래스 수와 커버되지 않은 메서드 수를 제공  
+
+#### :file_folder: 코드 레벨에서의 테스트 커버리지 확인
+![image](https://user-images.githubusercontent.com/78422940/227564719-3a4c9bc3-3fca-4631-942c-f0fc6668736f.png)
+
+* 초록색은 **테스트에서 실행됐다**는 의미
+* 빨간색은 테스트 코드에서 **실행되지 않는 라인**을 의미
+* 노란색은 코드가 분기되는 지점이며, ture 와 false 에 대한 모든 케이스가 테스트됐다면 초록색으로, 둘 중 하나만 테스트됐다면 노란색으로 표시
