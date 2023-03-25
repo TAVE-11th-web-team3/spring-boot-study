@@ -120,7 +120,7 @@
   
   ```
 
-  * <execution> 은 기본적으로 <goal> 을 포함하며, 설정한 값에 따라 추가 설정이 필요한 내용을 <configuration> 과 <rule>을 통해 작성
+  * ```<execution>``` 은 기본적으로 ```<goal>``` 을 포함하며, 설정한 값에 따라 추가 설정이 필요한 내용을 ```<configuration>``` 과 ```<rule>```을 통해 작성
   > **goal의 속성 값**
   
   * help: jacoco-maven-plugin에 대한 도움말을 보여줌.
