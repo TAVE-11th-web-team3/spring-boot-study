@@ -116,18 +116,6 @@ Page 1 of 2 containing com.springboot.jpa.data.entity.Product instances
 
 ---
 
-**Slice 사용 예시**
-
-```java
-Slice<Product> slice = productRepository.findSliceByName("펜", PageRequest.of(0, 2));
-while (slice.hasNext()) {
-
-    List<Product> products = slice.getContent();
-
-	slice = productRepository.findSliceByName("펜", slice.nextPageable());
-
-}
-```
 
 **조회한 데이터를 DTO로 변환하기** 
 
