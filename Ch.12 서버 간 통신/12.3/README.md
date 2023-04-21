@@ -1,5 +1,4 @@
 ## 12.3 WebClient란?
-___
 ###  WebClient
 >* **spring WebFlux는 HTTP 요청을 수행하는 클라이언트로 WebClient를 제공합니다.**
 >* **WebClient는 리액터(Reactor) 기반으로 동작하는 API입니다.**
